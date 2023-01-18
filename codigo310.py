@@ -16,14 +16,14 @@ Y = iris.target
 # plt.show()
 
 columnas = [0, 3]
-XX = X[0:100, columnas]
-YY = iris.target[0:100]
+XX = X[50:150, columnas]
+YY = iris.target[50:150]
 
 sc = StandardScaler()
 print(XX.mean(axis=0))
 XX = sc.fit_transform(XX)
 print(XX.mean(axis=0))
-
+YY = np.where(YY == 2, 1, 0)
 
 p = Perceptron(epochs=10, eta=0.01, print_progress=3)
 #p.fit(X, y)
@@ -33,7 +33,6 @@ perl = Perceptron(eta=0.05, epochs=200, random_seed=1, print_progress=3)
 '''Esta linea ejecuta el entrenamiento del perceptron'''
 perl.fit(XX, YY)
 ''''''
-
 
 plot_decision_regions(XX, YY, clf=perl)
 plt.title("Perceptron")
